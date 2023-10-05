@@ -2,12 +2,11 @@ document.getElementById('formularioEvento').addEventListener('submit', guardarEv
 
 function guardarEvento(e) {
   let nombre = document.getElementById('nombre').value;
-  let descripcion = document.getElementById('descripcion').value;
-  console.log(descripcion)
+  let fecha = document.getElementById('fecha').value;
 
   let evento = {
     nombre,
-    descripcion
+    fecha
   };
 
   if (localStorage.getItem('eventos') === null) {
@@ -25,31 +24,17 @@ function guardarEvento(e) {
   e.preventDefault();
 }
 
-function eliminarEvento(nombre) {
-  console.log(nombre)
-  let eventos = JSON.parse(localStorage.getItem('eventos'));
-  for (let i = 0; i < eventos.length; i++) {
-    if (eventos[i].nombre == nombre) {
-      eventos.splice(i, 1);
-    }
-  }
-
-  localStorage.setItem('eventos', JSON.stringify(eventos));
-  listarEventos();
-}
-
 function listarEventos() {
   let eventos = JSON.parse(localStorage.getItem('eventos'));
   let eventosVista = document.getElementById('eventos');
   eventosVista.innerHTML = '';
   for (let i = 0; i < eventos.length; i++) {
     let nombre = eventos[i].nombre;
-    let descripcion = eventos[i].descripcion;
+    let fecha = eventos[i].fecha;
 
-    eventosVista.innerHTML += `<div class="card mb-3">
+    eventosVista.innerHTML += `<div class="card my-3 mt-lg-0">
 <div class="card-body">
-<p>${nombre} - ${descripcion}
-<a href="#" onclick="eliminarEvento('${nombre}')" class="btn btn-danger ml-5">Eliminar</a>
+<p>${nombre} - ${fecha}
 </p>
 </div>
 </div>`;
