@@ -28,16 +28,18 @@ function listarEventos() {
   let eventos = JSON.parse(localStorage.getItem('eventos'));
   let eventosVista = document.getElementById('eventos');
   eventosVista.innerHTML = '';
-  for (let i = 0; i < eventos.length; i++) {
-    let nombre = eventos[i].nombre;
-    let fecha = eventos[i].fecha;
+  if (eventos !== null) {
+    for (let i = 0; i < eventos.length; i++) {
+      let nombre = eventos[i].nombre;
+      let fecha = eventos[i].fecha;
 
-    eventosVista.innerHTML += `<div class="card my-3 mt-lg-0">
+      eventosVista.innerHTML += `<div class="card my-3 mt-lg-0">
 <div class="card-body">
 <p>${nombre} - ${fecha}
 </p>
 </div>
 </div>`;
+    }
   }
 }
 
